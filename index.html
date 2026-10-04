@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KARMA — Labor, Converted to Software</title>
+<meta name="description" content="KARMA builds the infrastructure that turns human work into deployable agents. Labor is a $66 trillion market. We're converting it to software.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --bg2:#101013; --ink:#f5f1e8; --muted:#a8a29a;
+  --gold:#d4a937; --gold2:#f0d060; --line:rgba(212,169,55,.16);
+  --card:#131316;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:#0a0a0b}
+h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600}
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,11,.72);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:.18em}
+.brand span{color:var(--gold)}
+.nav-links{display:flex;gap:30px;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--gold)}
+.btn{display:inline-block;padding:14px 30px;border-radius:100px;font-weight:600;font-size:15px;cursor:pointer;border:1px solid var(--gold);transition:.25s}
+.btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#0a0a0b;border:none}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(212,169,55,.35)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold2);color:var(--gold2)}
+.btn-sm{padding:10px 22px;font-size:13px}
+/* ---------- hero ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:140px 0 80px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(900px 500px at 80% 10%,rgba(212,169,55,.12),transparent 60%),
+  radial-gradient(700px 500px at 10% 90%,rgba(212,169,55,.07),transparent 60%);pointer-events:none}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(212,169,55,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(212,169,55,.05) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 30%,transparent 75%);pointer-events:none}
+.hero h1{font-size:clamp(44px,7.2vw,96px);line-height:1.02;font-weight:700;letter-spacing:-.02em;max-width:14ch}
+.hero h1 .gold{background:linear-gradient(120deg,var(--gold2),var(--gold) 60%,#9a7420);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{margin-top:26px;font-size:clamp(17px,2vw,21px);color:var(--muted);max-width:56ch;line-height:1.65}
+.hero-ctas{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap}
+.ticker{margin-top:64px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;padding:16px 0;animation:tick 30s linear infinite;font-family:'Space Grotesk';font-size:15px;letter-spacing:.12em;color:var(--muted)}
+.ticker-inner b{color:var(--gold);font-weight:600}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ---------- sections ---------- */
+section{padding:110px 0;position:relative}
+.sec-head{max-width:760px;margin-bottom:64px}
+.sec-head h2{font-size:clamp(32px,4.4vw,58px);line-height:1.08;letter-spacing:-.015em;margin-top:18px}
+.sec-head p{margin-top:18px;color:var(--muted);font-size:18px;line-height:1.7}
+/* math cards */
+.math-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.math-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 30px;position:relative;overflow:hidden;transition:.3s}
+.math-card:hover{transform:translateY(-4px);border-color:rgba(212,169,55,.45)}
+.math-card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:.3s}
+.math-card:hover::after{opacity:1}
+.math-num{font-family:'Space Grotesk';font-size:clamp(38px,4vw,54px);font-weight:700;color:var(--gold);letter-spacing:-.02em}
+.math-label{margin-top:10px;font-size:15px;color:var(--ink);font-weight:600}
+.math-src{margin-top:8px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.vs-row{margin-top:26px;background:linear-gradient(135deg,rgba(212,169,55,.12),rgba(212,169,55,.03));border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-wrap:wrap;gap:18px;align-items:baseline;justify-content:space-between}
+.vs-row .big{font-family:'Space Grotesk';font-size:clamp(26px,3.4vw,40px);font-weight:700}
+.vs-row .big em{font-style:normal;color:var(--gold)}
+/* shift */
+.shift{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quote{font-family:'Space Grotesk';font-size:clamp(24px,3.4vw,40px);line-height:1.35;font-weight:500;max-width:22ch}
+.quote em{font-style:normal;color:var(--gold)}
+.shift p.body{margin-top:28px;color:var(--muted);font-size:18px;line-height:1.75;max-width:64ch}
+/* engine */
+.engine-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;counter-reset:step}
+.step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:38px 32px;position:relative;transition:.3s}
+.step:hover{border-color:rgba(212,169,55,.45);transform:translateY(-4px)}
+.step .n{font-family:'Space Grotesk';font-size:15px;color:var(--gold);letter-spacing:.25em;font-weight:600}
+.step h3{font-size:26px;margin:16px 0 12px;letter-spacing:-.01em}
+.step p{color:var(--muted);line-height:1.7;font-size:16px}
+/* wedge */
+.wedge-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:860px){.wedge-grid{grid-template-columns:1fr}}
+.wedge-list{list-style:none;margin-top:26px}
+.wedge-list li{padding:18px 0;border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:flex-start}
+.wedge-list li:last-child{border-bottom:none}
+.wedge-list .dot{color:var(--gold);font-weight:700;font-family:'Space Grotesk';flex-shrink:0}
+.wedge-list strong{display:block;font-size:17px;margin-bottom:4px}
+.wedge-list span{color:var(--muted);font-size:15px;line-height:1.6}
+.big-word{font-family:'Space Grotesk';font-weight:700;font-size:clamp(70px,12vw,170px);line-height:.95;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(212,169,55,.5)}
+.big-word .fill{color:var(--gold);-webkit-text-stroke:0}
+/* manifesto */
+.manifest{background:radial-gradient(800px 400px at 50% 0%,rgba(212,169,55,.08),transparent 65%)}
+.mani-line{font-family:'Space Grotesk';font-size:clamp(22px,3.2vw,36px);font-weight:600;line-height:1.4;padding:26px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.mani-line.visible{opacity:1;transform:none}
+.mani-line em{font-style:normal;color:var(--gold)}
+/* cta */
+.cta-box{background:linear-gradient(135deg,#17130a,#0e0d0a);border:1px solid rgba(212,169,55,.35);border-radius:28px;padding:clamp(40px,6vw,80px);text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 50% -10%,rgba(212,169,55,.18),transparent 60%);pointer-events:none}
+.cta-box h2{font-size:clamp(30px,4.6vw,56px);letter-spacing:-.02em;position:relative}
+.cta-box p{color:var(--muted);margin:18px auto 34px;max-width:52ch;line-height:1.7;font-size:17px;position:relative}
+.waitlist{display:flex;gap:12px;max-width:520px;margin:0 auto;position:relative;flex-wrap:wrap;justify-content:center}
+.waitlist input{flex:1;min-width:240px;background:#0a0a0b;border:1px solid var(--line);border-radius:100px;padding:15px 24px;color:var(--ink);font-size:15px;font-family:'Inter';outline:none}
+.waitlist input:focus{border-color:var(--gold)}
+.waitlist .ok{display:none;color:var(--gold2);font-weight:600;margin-top:6px;width:100%}
+/* footer */
+footer{border-top:1px solid var(--line);padding:44px 0;color:var(--muted);font-size:13.5px}
+.foot-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.foot-note{max-width:640px;line-height:1.7;margin-top:14px;font-size:12.5px;color:#6f6a5e}
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:720px){.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#top">KARMA<span>.</span></a>
+    <div class="nav-links">
+      <a href="#math">The Math</a>
+      <a href="#shift">The Shift</a>
+      <a href="#engine">The Engine</a>
+      <a href="#wedge">The Wedge</a>
+      <a href="#manifesto">Manifesto</a>
+    </div>
+    <a href="#access" class="btn btn-gold btn-sm">Request Access</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="grid-bg"></div>
+  <div class="wrap" style="position:relative">
+    <div class="eyebrow reveal">The agentic internet company — est. 2026</div>
+    <h1 class="reveal" style="margin-top:22px">Labor is a <span class="gold">$66 trillion</span> market.<br>We're converting it to software.</h1>
+    <p class="sub reveal">KARMA builds the infrastructure that turns human work into deployable agents — starting where labor is densest, scaling to everywhere. Not dashboards. Outcomes.</p>
+    <div class="hero-ctas reveal">
+      <a href="#access" class="btn btn-gold">Request Access</a>
+      <a href="#math" class="btn btn-ghost">Read the Thesis</a>
+    </div>
+    <div class="ticker reveal"><div class="ticker-inner" id="ticker"></div></div>
+  </div>
+</header>
+
+<section id="math">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The Math</div>
+      <h2>The largest market on Earth isn't software.<br>It's work.</h2>
+      <p>Every economy ever built runs on one input: human effort. Add it all up and the number dwarfs every industry you've ever heard of.</p>
+    </div>
+    <div class="math-grid">
+      <div class="math-card reveal">
+        <div class="math-num">$126.3T</div>
+        <div class="math-label">World nominal GDP, 2026</div>
+        <div class="math-src">IMF World Economic Outlook, April 2026</div>
+      </div>
+      <div class="math-card reveal">
+        <div class="math-num">~52%</div>
+        <div class="math-label">Of it paid to labor</div>
+        <div class="math-src">ILO global labor income share; US at record-low 52.8%, BLS Q2 2026</div>
+      </div>
+      <div class="math-card reveal">
+        <div class="math-num">$66T</div>
+        <div class="math-label">The annual paid-labor pool</div>
+        <div class="math-src">Derived: 52% × $126.3T world GDP</div>
+      </div>
+      <div class="math-card reveal">
+        <div class="math-num">8.32B</div>
+        <div class="math-label">Humans alive right now</div>
+        <div class="math-src">UN estimates via Worldometer, Oct 2026</div>
+      </div>
+    </div>
+    <div class="vs-row reveal">
+      <div class="big">Software ate <em>~$1T</em> of it.</div>
+      <div class="big">Agents eat <em>the rest.</em></div>
+    </div>
+  </div>
+</section>
+
+<section class="shift" id="shift">
+  <div class="wrap">
+    <div class="eyebrow reveal">The Shift</div>
+    <div class="quote reveal" style="margin-top:20px">Labor's share of income is at the <em>lowest level ever recorded.</em> AI isn't the threat to this trend — <em>it is the trend.</em></div>
+    <p class="body reveal">For decades, workers captured a shrinking cut of what the economy produces — from ~65% after WWII to ~52% today. Economists now name the cause plainly: technology, with AI as the latest and fastest force. Every point of share that moves from labor to capital is a point of the $66T pool up for conversion. The direction is one-way. The question was never <em>if</em>. Only <em>who builds the rails.</em></p>
+  </div>
+</section>
+
+<section id="engine">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The Engine</div>
+      <h2>The labor conversion stack.</h2>
+      <p>Three moves. Repeated in every sector, every country, every language — until the pool is converted.</p>
+    </div>
+    <div class="engine-grid">
+      <div class="step reveal">
+        <div class="n">01</div>
+        <h3>Map the work</h3>
+        <p>Every workflow decomposed into its atomic parts — tasks, decisions, exceptions, outcomes. What can be measured can be converted.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">02</div>
+        <h3>Deploy the agents</h3>
+        <p>Agents take the repetitive work; humans keep the judgment. Deployment is measured in outcomes recovered — revenue, hours, errors eliminated — not seats sold.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">03</div>
+        <h3>Compound the margin</h3>
+        <p>Every deployment makes the next one cheaper: shared patterns, shared data, shared infrastructure. The margin compounds. The pool shrinks. We grow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="wedge" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="wedge-grid">
+      <div class="reveal">
+        <div class="big-word">START<br><span class="fill">DENSE.</span><br>SCALE<br>UNIVERSAL.</div>
+      </div>
+      <div class="reveal">
+        <div class="eyebrow">The Wedge</div>
+        <h2 style="font-size:clamp(30px,4vw,50px);margin-top:16px;letter-spacing:-.015em">Distribution is the moat.</h2>
+        <ul class="wedge-list">
+          <li><span class="dot">—</span><div><strong>India-first, world-scale</strong><span>Labor is densest where businesses are smallest and wages are lowest. That is the wedge — and it is where the next billion workers live.</span></div></li>
+          <li><span class="dot">—</span><div><strong>Outcome pricing, not seat pricing</strong><span>Customers don't buy AI. They buy recovered revenue, reclaimed hours, eliminated error. We price the outcome.</span></div></li>
+          <li><span class="dot">—</span><div><strong>Product is the distribution</strong><span>Every deployed agent is a walking proof of work. Usage compounds into reach; reach compounds into the pool.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="manifest" id="manifesto">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Manifesto</div>
+      <h2>What we believe.</h2>
+    </div>
+    <div class="mani-line">Work is the world's largest asset class. <em>It was never for sale — until now.</em></div>
+    <div class="mani-line">We don't sell dashboards. <em>We sell outcomes.</em></div>
+    <div class="mani-line">Every agent deployed is a share of the $66T pool, <em>converted.</em></div>
+    <div class="mani-line">The future doesn't hire. <em>It deploys.</em></div>
+  </div>
+</section>
+
+<section id="access">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <div class="eyebrow">Private build</div>
+      <h2 style="margin-top:16px">The pool is open.<br>Access is not — yet.</h2>
+      <p>KARMA is in private build. Leave a signal and we'll reach out when your sector opens. First sectors get the compounding advantage.</p>
+      <form class="waitlist" id="waitlistForm">
+        <input type="email" id="wlEmail" placeholder="you@company.com" required aria-label="Email">
+        <button type="submit" class="btn btn-gold">Request Access</button>
+        <div class="ok" id="wlOk">Signal received. We'll find you when your sector opens.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <a class="brand" href="#top" style="font-size:18px">KARMA<span>.</span></a>
+      <div>© 2026 KARMA — The labor-to-software company.</div>
+    </div>
+    <div class="foot-note">Figures: world GDP $126.3T nominal, IMF World Economic Outlook April 2026 · global labor income share ~52%, ILO · US labor share 52.8% (record low), US Bureau of Labor Statistics Q2 2026 · world population 8.32B, UN via Worldometer Oct 2026 · global software revenue ≈$1T, industry estimates. Derived figures marked as such.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ticker
+  var items = [
+    ["WORLD GDP 2026","$126.3T"], ["PAID LABOR POOL","$66T"],
+    ["LABOR SHARE","~52%"], ["HUMANS ALIVE","8.32B"],
+    ["US LABOR SHARE","52.8% — RECORD LOW"], ["GLOBAL SOFTWARE","~$1T"],
+    ["GROWTH ADDED / YEAR","~69M PEOPLE"]
+  ];
+  var html = items.map(function(i){return "<b>"+i[0]+"</b>&nbsp;&nbsp;"+i[1]+"&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;&nbsp;"}).join("");
+  document.getElementById("ticker").innerHTML = html + html;
+  // reveal on scroll
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("visible"); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll(".reveal,.mani-line").forEach(function(el){ io.observe(el); });
+  // waitlist (local signal; production backend at launch)
+  var f = document.getElementById("waitlistForm");
+  f.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var em = document.getElementById("wlEmail").value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return;
+    try{
+      var k="karma_signals"; var arr=JSON.parse(localStorage.getItem(k)||"[]");
+      arr.push({email:em,ts:new Date().toISOString()}); localStorage.setItem(k,JSON.stringify(arr));
+    }catch(e){}
+    document.getElementById("wlOk").style.display="block";
+    f.querySelector("input").value=""; f.querySelector("button").disabled=true;
+  });
+})();
+</script>
+</body>
+</html>
